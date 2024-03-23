@@ -40,6 +40,12 @@
             txbSourceDirectory = new TextBox();
             txbDestinationDirectory = new TextBox();
             btnScan = new Button();
+            progressBar1 = new ProgressBar();
+            lblPhotosFound = new Label();
+            txbPhotosFound = new TextBox();
+            btnMove = new Button();
+            txbMovedPhotos = new TextBox();
+            lblMovedPhotos = new Label();
             SuspendLayout();
             // 
             // btnSourceDirectory
@@ -99,10 +105,49 @@
             btnScan.UseVisualStyleBackColor = true;
             btnScan.Click += btnScan_Click;
             // 
+            // progressBar1
+            // 
+            resources.ApplyResources(progressBar1, "progressBar1");
+            progressBar1.Name = "progressBar1";
+            // 
+            // lblPhotosFound
+            // 
+            resources.ApplyResources(lblPhotosFound, "lblPhotosFound");
+            lblPhotosFound.Name = "lblPhotosFound";
+            // 
+            // txbPhotosFound
+            // 
+            resources.ApplyResources(txbPhotosFound, "txbPhotosFound");
+            txbPhotosFound.Name = "txbPhotosFound";
+            txbPhotosFound.ReadOnly = true;
+            // 
+            // btnMove
+            // 
+            resources.ApplyResources(btnMove, "btnMove");
+            btnMove.Name = "btnMove";
+            btnMove.UseVisualStyleBackColor = true;
+            // 
+            // txbMovedPhotos
+            // 
+            resources.ApplyResources(txbMovedPhotos, "txbMovedPhotos");
+            txbMovedPhotos.Name = "txbMovedPhotos";
+            txbMovedPhotos.ReadOnly = true;
+            // 
+            // lblMovedPhotos
+            // 
+            resources.ApplyResources(lblMovedPhotos, "lblMovedPhotos");
+            lblMovedPhotos.Name = "lblMovedPhotos";
+            // 
             // MovePhotos
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(txbMovedPhotos);
+            Controls.Add(lblMovedPhotos);
+            Controls.Add(btnMove);
+            Controls.Add(txbPhotosFound);
+            Controls.Add(lblPhotosFound);
+            Controls.Add(progressBar1);
             Controls.Add(btnScan);
             Controls.Add(txbDestinationDirectory);
             Controls.Add(txbSourceDirectory);
@@ -130,5 +175,11 @@
         private TextBox txbSourceDirectory;
         private TextBox txbDestinationDirectory;
         private Button btnScan;
+        private ProgressBar progressBar1;
+        private Label lblPhotosFound;
+        private TextBox txbPhotosFound;
+        private Button btnMove;
+        private TextBox txbMovedPhotos;
+        private Label lblMovedPhotos;
     }
 }

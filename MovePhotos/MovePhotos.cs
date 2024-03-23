@@ -16,9 +16,12 @@ namespace MovePhotos
         {
             lblSourceDirectory.Text = Properties.strings.lblSourceDirectory;
             lblDestinationDirectory.Text = Properties.strings.lblDestinationDirectory;
+            lblPhotosFound.Text = Properties.strings.lblPhotosFound;
+            lblMovedPhotos.Text = Properties.strings.lblMovedPhotos;
             btnSourceDirectory.Text = Properties.strings.btnSourceDirectoryName;
             btnDestinationDirectory.Text = Properties.strings.btnDestinationDirectoryName;
             btnScan.Text = Properties.strings.btnScan;
+            btnMove.Text = Properties.strings.btnMove;
             btnSpanish.Image = Properties.images.ES;
             btnEnglish.Image = Properties.images.EN;
         }

@@ -120,6 +120,9 @@
   <data name="btnDestinationDirectoryName" xml:space="preserve">
     <value>Choose Destination Directory</value>
   </data>
+  <data name="btnMove" xml:space="preserve">
+    <value>MOVE</value>
+  </data>
   <data name="btnScan" xml:space="preserve">
     <value>SCAN</value>
   </data>
@@ -128,6 +131,12 @@
   </data>
   <data name="lblDestinationDirectory" xml:space="preserve">
     <value>Selected Destination Directory:</value>
+  </data>
+  <data name="lblMovedPhotos" xml:space="preserve">
+    <value>Photos Moved:</value>
+  </data>
+  <data name="lblPhotosFound" xml:space="preserve">
+    <value>Photos Found:</value>
   </data>
   <data name="lblSourceDirectory" xml:space="preserve">
     <value>Selected Source Directory:</value>

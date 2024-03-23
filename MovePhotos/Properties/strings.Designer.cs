@@ -70,6 +70,15 @@ namespace MovePhotos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MOVE.
+        /// </summary>
+        public static string btnMove {
+            get {
+                return ResourceManager.GetString("btnMove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SCAN.
         /// </summary>
         public static string btnScan {
@@ -93,6 +102,24 @@ namespace MovePhotos.Properties {
         public static string lblDestinationDirectory {
             get {
                 return ResourceManager.GetString("lblDestinationDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Photos Moved:.
+        /// </summary>
+        public static string lblMovedPhotos {
+            get {
+                return ResourceManager.GetString("lblMovedPhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Photos Found:.
+        /// </summary>
+        public static string lblPhotosFound {
+            get {
+                return ResourceManager.GetString("lblPhotosFound", resourceCulture);
             }
         }
         
