@@ -40,7 +40,7 @@
             txbSourceDirectory = new TextBox();
             txbDestinationDirectory = new TextBox();
             btnScan = new Button();
-            progressBar1 = new ProgressBar();
+            progressBar = new ProgressBar();
             lblPhotosFound = new Label();
             txbPhotosFound = new TextBox();
             btnMove = new Button();
@@ -105,10 +105,10 @@
             btnScan.UseVisualStyleBackColor = true;
             btnScan.Click += btnScan_Click;
             // 
-            // progressBar1
+            // progressBar
             // 
-            resources.ApplyResources(progressBar1, "progressBar1");
-            progressBar1.Name = "progressBar1";
+            resources.ApplyResources(progressBar, "progressBar");
+            progressBar.Name = "progressBar";
             // 
             // lblPhotosFound
             // 
@@ -126,6 +126,7 @@
             resources.ApplyResources(btnMove, "btnMove");
             btnMove.Name = "btnMove";
             btnMove.UseVisualStyleBackColor = true;
+            btnMove.Click += btnMove_Click;
             // 
             // txbMovedPhotos
             // 
@@ -147,7 +148,7 @@
             Controls.Add(btnMove);
             Controls.Add(txbPhotosFound);
             Controls.Add(lblPhotosFound);
-            Controls.Add(progressBar1);
+            Controls.Add(progressBar);
             Controls.Add(btnScan);
             Controls.Add(txbDestinationDirectory);
             Controls.Add(txbSourceDirectory);
@@ -175,7 +176,7 @@
         private TextBox txbSourceDirectory;
         private TextBox txbDestinationDirectory;
         private Button btnScan;
-        private ProgressBar progressBar1;
+        private ProgressBar progressBar;
         private Label lblPhotosFound;
         private TextBox txbPhotosFound;
         private Button btnMove;

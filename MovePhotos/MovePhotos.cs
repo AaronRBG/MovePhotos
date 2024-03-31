@@ -4,12 +4,23 @@ namespace MovePhotos
 {
     public partial class MovePhotos : Form
     {
+        private const string DIRECTORY_SEPARATOR = "\\";
+        private Dictionary<FileInfo, string> filesToMove = new Dictionary<FileInfo, string>();
+        private List<string> fileExtensions = new List<string>()
+        {
+            ".png",
+            ".jpg",
+            ".jpeg",
+            ".mp4",
+            ".avi"
+        };
+
         public MovePhotos()
         {
-            InitializeComponent();
+            InitializeComponent(); 
             UpdateLocalization();
-            sourceFolderBrowser.RootFolder = Environment.SpecialFolder.System;
-            destinationFolderBrowser.RootFolder = Environment.SpecialFolder.System;
+            sourceFolderBrowser.RootFolder = Environment.SpecialFolder.MyComputer;
+            destinationFolderBrowser.RootFolder = Environment.SpecialFolder.MyComputer;
         }
 
         private void UpdateLocalization()
@@ -54,11 +65,57 @@ namespace MovePhotos
             btnSourceDirectory.Enabled = false;
             btnDestinationDirectory.Enabled = false;
             Scan();
+            txbPhotosFound.Text = filesToMove.Count.ToString();
+        }
+
+        private void btnMove_Click(object sender, EventArgs e)
+        {
+            progressBar.Value = 0;
+            Move();
+            DirectoryInfo directoryInfo = new DirectoryInfo(destinationFolderBrowser.SelectedPath);
+            FileInfo[] filesMoved = directoryInfo.GetFiles("*.*", SearchOption.AllDirectories);
+            txbMovedPhotos.Text = filesToMove.Count.ToString();
         }
 
         private void Scan()
         {
-            //Do nothing
+            filesToMove.Clear();
+            DirectoryInfo directoryInfo = new DirectoryInfo(sourceFolderBrowser.SelectedPath);
+            FileInfo[] fileList = directoryInfo.GetFiles();
+            int current = 0;
+            foreach (FileInfo file in fileList)
+            {
+                if (fileExtensions.Contains(file.Extension))
+                {
+                    DateTime timeStamp = file.LastWriteTime;
+                    string destinationPath = destinationFolderBrowser.SelectedPath + DIRECTORY_SEPARATOR + timeStamp.Year.ToString() + DIRECTORY_SEPARATOR + timeStamp.ToString("MMMM", CultureInfo.CurrentUICulture);
+                    filesToMove.Add(file, destinationPath);
+                }
+
+                current++;
+                progressBar.Value = current / fileList.Length * 100;
+            }
+        }
+
+        private new void Move()
+        {
+            int current = 0;
+            foreach (KeyValuePair<FileInfo, string> file in filesToMove)
+            {
+                string directoryName = file.Value;
+                string destinationPath = directoryName + DIRECTORY_SEPARATOR + file.Key.Name;
+
+                if (!File.Exists(directoryName))
+                {
+                    Directory.CreateDirectory(file.Value);
+                }
+                if (!File.Exists(destinationPath))
+                {
+                    file.Key.CopyTo(file.Value + DIRECTORY_SEPARATOR + file.Key.Name);
+                }
+                current++;
+                progressBar.Value = current / filesToMove.Count * 100;
+            }
         }
     }
 }
