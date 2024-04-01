@@ -4,6 +4,8 @@ namespace MovePhotos
 {
     public partial class MovePhotos : Form
     {
+        private string logPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\MovePhotosLog_{DateTime.Now.ToString("yyyy-MM-dd_HH_mm")}";
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(typeof(MovePhotos));
         private const string DIRECTORY_SEPARATOR = "\\";
         private Dictionary<FileInfo, string> filesToMove = new Dictionary<FileInfo, string>();
         private List<string> fileExtensions = new List<string>()
@@ -17,8 +19,11 @@ namespace MovePhotos
 
         public MovePhotos()
         {
+            log4net.GlobalContext.Properties["LogFileName"] = logPath;
             InitializeComponent(); 
             UpdateLocalization();
+            sourceFolderBrowser.InitialDirectory = Environment.SystemDirectory;
+            destinationFolderBrowser.InitialDirectory = Environment.SystemDirectory;
             sourceFolderBrowser.RootFolder = Environment.SpecialFolder.MyComputer;
             destinationFolderBrowser.RootFolder = Environment.SpecialFolder.MyComputer;
         }
@@ -66,6 +71,7 @@ namespace MovePhotos
             btnDestinationDirectory.Enabled = false;
             Scan();
             txbPhotosFound.Text = filesToMove.Count.ToString();
+            logger.Info(Properties.strings.lblPhotosFound + txbPhotosFound.Text);
         }
 
         private void btnMove_Click(object sender, EventArgs e)
@@ -74,7 +80,8 @@ namespace MovePhotos
             Move();
             DirectoryInfo directoryInfo = new DirectoryInfo(destinationFolderBrowser.SelectedPath);
             FileInfo[] filesMoved = directoryInfo.GetFiles("*.*", SearchOption.AllDirectories);
-            txbMovedPhotos.Text = filesToMove.Count.ToString();
+            txbMovedPhotos.Text = filesMoved.Length.ToString();
+            logger.Info(Properties.strings.lblMovedPhotos + txbMovedPhotos.Text);
         }
 
         private void Scan()
@@ -117,5 +124,5 @@ namespace MovePhotos
                 progressBar.Value = current / filesToMove.Count * 100;
             }
         }
-    }
+    }    
 }
