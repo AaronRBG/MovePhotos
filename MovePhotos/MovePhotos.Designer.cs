@@ -46,6 +46,7 @@
             btnMove = new Button();
             txbMovedPhotos = new TextBox();
             lblMovedPhotos = new Label();
+            treeView = new TreeView();
             SuspendLayout();
             // 
             // btnSourceDirectory
@@ -139,10 +140,17 @@
             resources.ApplyResources(lblMovedPhotos, "lblMovedPhotos");
             lblMovedPhotos.Name = "lblMovedPhotos";
             // 
+            // treeView
+            // 
+            treeView.CheckBoxes = true;
+            resources.ApplyResources(treeView, "treeView");
+            treeView.Name = "treeView";
+            // 
             // MovePhotos
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(treeView);
             Controls.Add(txbMovedPhotos);
             Controls.Add(lblMovedPhotos);
             Controls.Add(btnMove);
@@ -182,5 +190,6 @@
         private Button btnMove;
         private TextBox txbMovedPhotos;
         private Label lblMovedPhotos;
+        private TreeView treeView;
     }
 }

@@ -144,7 +144,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSourceDirectory.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnDestinationDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnDestinationDirectory.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 138</value>
@@ -165,10 +169,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnDestinationDirectory.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="btnSpanish.Location" type="System.Drawing.Point, System.Drawing">
-    <value>670, 12</value>
+    <value>627, 12</value>
   </data>
   <data name="btnSpanish.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 32</value>
@@ -186,10 +190,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSpanish.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="btnEnglish.Location" type="System.Drawing.Point, System.Drawing">
-    <value>724, 12</value>
+    <value>681, 12</value>
   </data>
   <data name="btnEnglish.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 32</value>
@@ -207,12 +211,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnEnglish.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="lblSourceDirectory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblSourceDirectory.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -238,7 +241,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblSourceDirectory.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="lblDestinationDirectory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -268,13 +271,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblDestinationDirectory.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="txbSourceDirectory.Location" type="System.Drawing.Point, System.Drawing">
     <value>205, 89</value>
   </data>
   <data name="txbSourceDirectory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>363, 23</value>
+    <value>377, 23</value>
   </data>
   <data name="txbSourceDirectory.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -289,13 +292,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txbSourceDirectory.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="txbDestinationDirectory.Location" type="System.Drawing.Point, System.Drawing">
     <value>205, 183</value>
   </data>
   <data name="txbDestinationDirectory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>363, 23</value>
+    <value>377, 23</value>
   </data>
   <data name="txbDestinationDirectory.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -310,13 +313,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txbDestinationDirectory.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
+  </data>
+  <data name="btnScan.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnScan.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnScan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>639, 138</value>
+    <value>627, 138</value>
   </data>
   <data name="btnScan.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 25</value>
@@ -334,7 +340,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnScan.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="progressBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -358,7 +364,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBar.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lblPhotosFound.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -367,7 +373,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblPhotosFound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 267</value>
+    <value>627, 246</value>
   </data>
   <data name="lblPhotosFound.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 15</value>
@@ -388,13 +394,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPhotosFound.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="txbPhotosFound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 264</value>
+    <value>627, 273</value>
   </data>
   <data name="txbPhotosFound.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 23</value>
+    <value>91, 23</value>
   </data>
   <data name="txbPhotosFound.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -409,13 +415,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txbPhotosFound.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="btnMove.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnMove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnMove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>344, 314</value>
+    <value>627, 319</value>
   </data>
   <data name="btnMove.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 25</value>
@@ -433,13 +442,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnMove.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="txbMovedPhotos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 264</value>
+    <value>627, 389</value>
   </data>
   <data name="txbMovedPhotos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 23</value>
+    <value>91, 23</value>
   </data>
   <data name="txbMovedPhotos.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -454,7 +463,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txbMovedPhotos.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="lblMovedPhotos.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -463,7 +472,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblMovedPhotos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>517, 267</value>
+    <value>627, 362</value>
   </data>
   <data name="lblMovedPhotos.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 15</value>
@@ -484,7 +493,28 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblMovedPhotos.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
+  </data>
+  <data name="treeView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 246</value>
+  </data>
+  <data name="treeView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>559, 166</value>
+  </data>
+  <data name="treeView.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;treeView.Name" xml:space="preserve">
+    <value>treeView</value>
+  </data>
+  <data name="&gt;&gt;treeView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treeView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;treeView.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -493,7 +523,7 @@
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 461</value>
+    <value>738, 461</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>MovePhotos</value>
