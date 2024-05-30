@@ -47,6 +47,8 @@
             txbMovedPhotos = new TextBox();
             lblMovedPhotos = new Label();
             treeView = new TreeView();
+            lblSelectedPhotos = new Label();
+            txbSelectedPhotos = new TextBox();
             SuspendLayout();
             // 
             // btnSourceDirectory
@@ -145,11 +147,25 @@
             treeView.CheckBoxes = true;
             resources.ApplyResources(treeView, "treeView");
             treeView.Name = "treeView";
+            treeView.AfterCheck += treeView_AfterCheck;
+            // 
+            // lblSelectedPhotos
+            // 
+            resources.ApplyResources(lblSelectedPhotos, "lblSelectedPhotos");
+            lblSelectedPhotos.Name = "lblSelectedPhotos";
+            // 
+            // txbSelectedPhotos
+            // 
+            resources.ApplyResources(txbSelectedPhotos, "txbSelectedPhotos");
+            txbSelectedPhotos.Name = "txbSelectedPhotos";
+            txbSelectedPhotos.ReadOnly = true;
             // 
             // MovePhotos
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(txbSelectedPhotos);
+            Controls.Add(lblSelectedPhotos);
             Controls.Add(treeView);
             Controls.Add(txbMovedPhotos);
             Controls.Add(lblMovedPhotos);
@@ -191,5 +207,7 @@
         private TextBox txbMovedPhotos;
         private Label lblMovedPhotos;
         private TreeView treeView;
+        private Label lblSelectedPhotos;
+        private TextBox txbSelectedPhotos;
     }
 }

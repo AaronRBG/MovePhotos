@@ -35,6 +35,7 @@ namespace MovePhotos
             lblDestinationDirectory.Text = Properties.strings.lblDestinationDirectory;
             lblPhotosFound.Text = Properties.strings.lblPhotosFound;
             lblMovedPhotos.Text = Properties.strings.lblMovedPhotos;
+            lblSelectedPhotos.Text = Properties.strings.lblSelectedPhotos;
             btnSourceDirectory.Text = Properties.strings.btnSourceDirectoryName;
             btnDestinationDirectory.Text = Properties.strings.btnDestinationDirectoryName;
             btnScan.Text = Properties.strings.btnScan;
@@ -79,6 +80,7 @@ namespace MovePhotos
             Scan();
             txbPhotosFound.Text = filesToMove.Count.ToString();
             btnMove.Enabled = true;
+            logger.Info(Properties.strings.lblSourceDirectory + txbSourceDirectory.Text);
             logger.Info(Properties.strings.lblPhotosFound + filesToMove.Count);
         }
 
@@ -90,33 +92,30 @@ namespace MovePhotos
             progressBar.Value = 0;
             Move();
             DirectoryInfo directoryInfo = new DirectoryInfo(destinationFolderBrowser.SelectedPath);
-            FileInfo[] filesAfter = directoryInfo.GetFiles("*.*", SearchOption.AllDirectories);
+            FileInfo[] filesAfter = directoryInfo.GetFiles("*.*", SearchOption.AllDirectories).Where(file => fileExtensions.Contains(file.Extension)).ToArray();
             int filesMoved = filesAfter.Length - filesOriginalDestinationCount;
             txbMovedPhotos.Text = filesMoved.ToString();
+            logger.Info(Properties.strings.lblDestinationDirectory + txbDestinationDirectory.Text);
+            logger.Info(Properties.strings.lblSelectedPhotos + txbSelectedPhotos.Text);
             logger.Info(Properties.strings.lblMovedPhotos + filesMoved);
+
+            if (filesMoved < filesToMove.Count)
+            {
+                Verify();
+            }
         }
 
         private void Scan()
         {
-            filesToMove.Clear();
             DirectoryInfo directoryInfo = new DirectoryInfo(sourceFolderBrowser.SelectedPath);
-            FileInfo[] fileList = directoryInfo.GetFiles();
-            int current = 0;
-            foreach (FileInfo file in fileList)
-            {
-                if (fileExtensions.Contains(file.Extension))
-                {
-                    DateTime timeStamp = file.LastWriteTime;
-                    string destinationPath = destinationFolderBrowser.SelectedPath + DIRECTORY_SEPARATOR + timeStamp.Year.ToString() + DIRECTORY_SEPARATOR + timeStamp.ToString("MMMM", CultureInfo.CurrentUICulture);
-                    filesToMove.Add(file, destinationPath);
-                }
+            FileInfo[] fileList = directoryInfo.GetFiles("*", SearchOption.AllDirectories).Where(file => fileExtensions.Contains(file.Extension)).ToArray();
 
-                current++;
-                progressBar.Value = current / fileList.Length * 100;
-            }
             PopulateTreeView(sourceFolderBrowser.SelectedPath);
+            filesToMove.Clear();
+            PrepareSelectedPhotos(treeView.Nodes);
+
             directoryInfo = new DirectoryInfo(destinationFolderBrowser.SelectedPath);
-            FileInfo[] filesBefore = directoryInfo.GetFiles("*.*", SearchOption.AllDirectories);
+            FileInfo[] filesBefore = directoryInfo.GetFiles("*", SearchOption.AllDirectories).Where(file => fileExtensions.Contains(file.Extension)).ToArray();
             filesOriginalDestinationCount = filesBefore.Length;
         }
         private new void Move()
@@ -127,24 +126,51 @@ namespace MovePhotos
                 string directoryName = file.Value;
                 string destinationPath = directoryName + DIRECTORY_SEPARATOR + file.Key.Name;
 
-                if (!File.Exists(directoryName))
+                if (!Directory.Exists(directoryName))
                 {
                     Directory.CreateDirectory(file.Value);
                 }
                 if (!File.Exists(destinationPath))
                 {
-                    file.Key.CopyTo(file.Value + DIRECTORY_SEPARATOR + file.Key.Name);
+                    try
+                    {
+                        file.Key.CopyTo(file.Value + DIRECTORY_SEPARATOR + file.Key.Name);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e.Message);
+                    }
                 }
                 current++;
                 progressBar.Value = current / filesToMove.Count * 100;
             }
         }
 
+        private void Verify()
+        {
+            foreach (KeyValuePair<FileInfo, string> file in filesToMove)
+            {
+                string directoryName = file.Value;
+                string destinationPath = directoryName + DIRECTORY_SEPARATOR + file.Key.Name;
+
+                if (!Directory.Exists(directoryName))
+                {
+                    logger.Error(Properties.strings.TheDirectory + directoryName + Properties.strings.WasNotCreated);
+                }
+                if (!File.Exists(destinationPath))
+                {
+                    logger.Error(Properties.strings.TheFile + file.Key.Name + Properties.strings.WasNotCopied);
+                }
+            }
+        }
+
         private void PopulateTreeView(string rootFolder)
         {
+            treeView.Nodes.Clear();
             TreeNode rootNode = new TreeNode(rootFolder);
             rootNode.Tag = rootFolder;
             rootNode.Text = $"{rootFolder} ({GetFileCount(rootFolder)})";
+            rootNode.Checked = true;
             treeView.Nodes.Add(rootNode);
             PopulateSubDirectories(rootNode);
         }
@@ -160,6 +186,7 @@ namespace MovePhotos
                     TreeNode subNode = new TreeNode(subDirectory);
                     subNode.Tag = subDirectory;
                     subNode.Text = $"{Path.GetFileName(subDirectory)} ({GetFileCount(subDirectory)})";
+                    subNode.Checked = true;
                     node.Nodes.Add(subNode);
                     PopulateSubDirectories(subNode);
                 }
@@ -174,12 +201,46 @@ namespace MovePhotos
         {
             try
             {
-                return Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories).Length;
+                DirectoryInfo directoryInfo = new DirectoryInfo(folderPath);
+                return directoryInfo.GetFiles("*", SearchOption.AllDirectories).Where(file => fileExtensions.Contains(file.Extension)).Count();
             }
             catch (UnauthorizedAccessException)
             {
                 // Handle the exception if access is denied to a folder
                 return 0;
+            }
+        }
+
+        private void treeView_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            filesToMove.Clear();
+            PrepareSelectedPhotos(treeView.Nodes);
+            txbSelectedPhotos.Text = filesToMove.Count().ToString();
+        }
+
+        private void PrepareSelectedPhotos(TreeNodeCollection nodes)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Checked)
+                {
+                    DirectoryInfo directoryInfo = new DirectoryInfo(node.Tag.ToString());
+                    FileInfo[] fileList = directoryInfo.GetFiles("*", SearchOption.TopDirectoryOnly).Where(file => fileExtensions.Contains(file.Extension)).ToArray();
+                    int current = 0;
+                    foreach (FileInfo file in fileList)
+                    {
+                        if (fileExtensions.Contains(file.Extension))
+                        {
+                            DateTime timeStamp = file.LastWriteTime;
+                            string destinationPath = destinationFolderBrowser.SelectedPath + DIRECTORY_SEPARATOR + timeStamp.Year.ToString() + DIRECTORY_SEPARATOR + timeStamp.ToString("MMMM", CultureInfo.CurrentUICulture);
+                            filesToMove.Add(file, destinationPath);
+                        }
+
+                        current++;
+                        progressBar.Value = current / fileList.Length * 100;
+                    }
+                }
+                PrepareSelectedPhotos(node.Nodes);
             }
         }
 

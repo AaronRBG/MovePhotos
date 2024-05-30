@@ -138,7 +138,22 @@
   <data name="lblPhotosFound" xml:space="preserve">
     <value>Photos Found:</value>
   </data>
+  <data name="lblSelectedPhotos" xml:space="preserve">
+    <value>Selected Photos:</value>
+  </data>
   <data name="lblSourceDirectory" xml:space="preserve">
     <value>Selected Source Directory:</value>
+  </data>
+  <data name="TheDirectory" xml:space="preserve">
+    <value>The directory </value>
+  </data>
+  <data name="TheFile" xml:space="preserve">
+    <value>The file </value>
+  </data>
+  <data name="WasNotCopied" xml:space="preserve">
+    <value> was not copied.</value>
+  </data>
+  <data name="WasNotCreated" xml:space="preserve">
+    <value> was not created.</value>
   </data>
 </root>

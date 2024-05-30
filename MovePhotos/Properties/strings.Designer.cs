@@ -124,11 +124,56 @@ namespace MovePhotos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected Photos:.
+        /// </summary>
+        public static string lblSelectedPhotos {
+            get {
+                return ResourceManager.GetString("lblSelectedPhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected Source Directory:.
         /// </summary>
         public static string lblSourceDirectory {
             get {
                 return ResourceManager.GetString("lblSourceDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory .
+        /// </summary>
+        public static string TheDirectory {
+            get {
+                return ResourceManager.GetString("TheDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file .
+        /// </summary>
+        public static string TheFile {
+            get {
+                return ResourceManager.GetString("TheFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  was not copied..
+        /// </summary>
+        public static string WasNotCopied {
+            get {
+                return ResourceManager.GetString("WasNotCopied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  was not created..
+        /// </summary>
+        public static string WasNotCreated {
+            get {
+                return ResourceManager.GetString("WasNotCreated", resourceCulture);
             }
         }
     }
